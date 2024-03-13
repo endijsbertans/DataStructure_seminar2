@@ -18,6 +18,20 @@ public class MyLinkedList<Ttype> {
 	{
 		return counter;
 	}
-	
+	public void add(Ttype element) throws Exception {
+		if(element == null) throw new Exception("Problems with element");
+		
+		MyListNode newNode = new MyListNode(element);
+		     
+		if(isEmpty()) {
+			first = newNode;
+			last = newNode;
+		}else {
+			newNode.setPrevious(last);
+			last.setNext(newNode);
+			last = newNode;
+		}
+		counter++;
+	}
 
 }
