@@ -74,7 +74,7 @@ public class MyLinkedList<Ttype> {
 		
 		MyListNode temp = first;
 		for(int i = 0; i < counter; i++) {
-			System.out.println(temp+" ");
+			System.out.print(temp+ " ");
 			temp = temp.getNext();
 		}
 		System.out.println();
@@ -99,7 +99,17 @@ public class MyLinkedList<Ttype> {
 			counter--;
 			System.gc();
 		}else {
-			
+			MyListNode tempN = first;
+
+			for(int i = 0; i < pos; i++) {
+				tempN = tempN.getNext();
+			}
+			MyListNode rightNode = tempN.getNext();
+			MyListNode leftNode = tempN.getPrevious();
+			leftNode.setNext(rightNode);
+			rightNode.setPrevious(leftNode);
+			counter--;
+			System.gc();
 		}
 	}
 }
