@@ -15,6 +15,12 @@ public class MainService {
 			
 			myList.delete(2);
 			myList.print();
+			
+			System.out.println("GET: " + myList.get(2));
+			System.out.println("SEARCH: " + myList.search(23));
+			myList.makeEmpty();
+			myList.add(2);
+			myList.print();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
