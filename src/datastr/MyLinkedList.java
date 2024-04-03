@@ -33,9 +33,9 @@ public class MyLinkedList<Ttype> {
 	}
 	public void add(Ttype element, int pos) throws Exception {
 		if(element == null) throw new Exception("Problems with element");
+		
 		MyListNode newNode = new MyListNode(element);
 
-		
 		if(pos > counter || pos < 0 ) 
 			throw new Exception("Out of bounds");
 		
@@ -71,11 +71,35 @@ public class MyLinkedList<Ttype> {
 	
 	public void print() throws Exception {
 		if(isEmpty()) throw new Exception("List is empty");
+		
 		MyListNode temp = first;
 		for(int i = 0; i < counter; i++) {
 			System.out.println(temp+" ");
 			temp = temp.getNext();
 		}
 		System.out.println();
+	}
+	public void delete(int pos) throws Exception {
+		
+		if(pos >= counter || pos < 0 ) 
+			throw new Exception("Out of bounds");
+
+		if(isEmpty()){
+			throw new Exception("list empty");
+		}else if(pos == 0) {
+			MyListNode newFirstNode = first.getNext();
+			newFirstNode.setPrevious(null); 
+			first = newFirstNode;
+			counter--;
+			System.gc();
+		}else if(pos == counter-1){
+			MyListNode newLastNode = last.getPrevious();
+			newLastNode.setNext(null); 
+			last = newLastNode;
+			counter--;
+			System.gc();
+		}else {
+			
+		}
 	}
 }
