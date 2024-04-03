@@ -7,15 +7,13 @@ public class MyLinkedList<Ttype> {
 	
 	//pēc noklusejuma jau ir bezargumenta konstruktors -> MyLinkedList()
 	
-	public boolean isEmpty()
-	{
+	public boolean isEmpty(){
 		return (counter==0);
 	}
 	
 	//TODO padomāt un izveidot isFull() funkciju
 	
-	public int howManyElements()
-	{
+	public int howManyElements(){
 		return counter;
 	}
 	public void add(Ttype element) throws Exception {
@@ -32,6 +30,43 @@ public class MyLinkedList<Ttype> {
 			last = newNode;
 		}
 		counter++;
+	}
+	public void add(Ttype element, int pos) throws Exception {
+		if(element == null) throw new Exception("Problems with element");
+		MyListNode newNode = new MyListNode(element);
+
+		
+		if(pos > counter || pos < 0 ) 
+			throw new Exception("Out of bounds");
+		
+		if(isEmpty() && pos == 0 ){
+			add(element);
+			
+		}else if(isEmpty() && pos != 0){
+			throw new Exception("list empty and pos not 0");
+			
+		}else if(pos == 0) {
+			newNode.setNext(first);
+			first.setPrevious(newNode);
+			first = newNode;
+			counter++;
+			
+		}else if(pos == counter){
+			add(element);
+			
+		}else {
+			MyListNode tempN = first;
+			for(int i = 0; i < pos; i++) {
+				tempN = tempN.getNext();
+			}
+			MyListNode rightNode = tempN;
+			MyListNode leftNode = tempN.getPrevious();
+			newNode.setNext(rightNode);
+			rightNode.setPrevious(newNode);
+			newNode.setPrevious(leftNode);
+			leftNode.setNext(newNode);
+			counter++;
+		}
 	}
 	
 	public void print() throws Exception {

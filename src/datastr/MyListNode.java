@@ -36,7 +36,7 @@ public class MyListNode<Ttype> {
 	
 	//4. toString
 	public String toString() {
-		return ""+element;
+		return " "+element;
 	}
 	
 }
